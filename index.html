@@ -137,6 +137,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-awk常见应用场景" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/24/awk%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">awk常见应用场景</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/24/awk%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" class="archive-article-date">
+  	<time datetime="2021-03-24T14:21:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="截取文档中的某段"><a href="#截取文档中的某段" class="headerlink" title="截取文档中的某段"></a>截取文档中的某段</h2><ul>
+<li>head -n2 test.txt | awk -F ‘:’ ‘{print $1}’</li>
+<li>head -n2 test.txt | awk -F ‘:’ ‘print $1”#”$2”#”$3”#”$4”#”‘</li>
+</ul>
+<h2 id="匹配字符或者字符串"><a href="#匹配字符或者字符串" class="headerlink" title="匹配字符或者字符串"></a>匹配字符或者字符串</h2><ul>
+<li>awk ‘/oo/‘ test.txt</li>
+<li>awk -F ‘:’ ‘$1 ~/oo/‘ test.txt</li>
+<li>awk -F ‘:’ ‘/root {print $1,$3} /test/ {print $1 $3}’ test.txt</li>
+</ul>
+<h2 id="条件操作符"><a href="#条件操作符" class="headerlink" title="条件操作符"></a>条件操作符</h2><ul>
+<li>awk -F ‘:’ ‘$3==”0”‘ /etc/passwd</li>
+<li>awk -F ‘:’ ‘$3&gt;=500’ /etc/passwd | head -n 5</li>
+<li>awk -F ‘:’ ‘$7!=”/sbin/nologin”‘ /etc/passwd</li>
+<li>awk -F ‘:’ ‘$3&lt;$4’ /etc/passwd</li>
+<li>awk -F ‘:’ ‘$3&gt;”5” &amp;&amp; $3&lt;”7”‘ /etc/passwd</li>
+<li>awk -F ‘:’ ‘$3&gt;1000 || $7==”/bin/bash”‘ /etc/passwd</li>
+</ul>
+<h2 id="awk的内置变量"><a href="#awk的内置变量" class="headerlink" title="awk的内置变量"></a>awk的内置变量</h2><ul>
+<li>head -5 /etc/passwd | awk -F ‘:’ ‘{OFS=”#”} {print $1,$3,$4}’</li>
+<li>awk -F ‘:’ ‘{OFS=”#”} {if ($3&gt;=1000) {print $1,$2.$3,$4}}’</li>
+<li>head -n3 /etc/passwd | awk -F ‘:’ ‘{print NF}’</li>
+<li>head -n3 /etc/passwd | awk -F ‘:’ ‘{print $NF}’</li>
+<li>head -n3 /etc/passwd | awk -F ‘:’ ‘{print NR}’</li>
+<li>awk ‘NR&gt;40’ /etc/passwd</li>
+<li>awk -F ‘:’ ‘NR&lt;20 &amp;&amp; $1 ~ /roo/‘ /etc/passwd</li>
+</ul>
+<h2 id="awk中的数学运算"><a href="#awk中的数学运算" class="headerlink" title="awk中的数学运算"></a>awk中的数学运算</h2><ul>
+<li>head -n 3 /etc/passwd | awk -F ‘:’ ‘$1=”root”‘</li>
+<li>head -n 2 /etc/passwd | awk -F ‘:’ ‘{$7=$3+$4}’</li>
+<li>head -n 2 /etc/passwd | awk -F ‘:’ ‘{$7=$3+$4; print $0}’</li>
+<li>awk -F ‘:’ ‘{(tot=tot+$3); END {print tot}}’ /etc/passwd</li>
+<li>awk -F ‘:’ ‘{if ($1==”root”) {print $0}}’ /etc/passwd</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/24/awk%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux常用小命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
