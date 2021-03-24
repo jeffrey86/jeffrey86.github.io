@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://jeffrey86.github.io">
-  <title>感叹，两年前 | 关于你的，我都感兴趣</title>
+  <title>OpenCV参数 | 关于你的，我都感兴趣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。 所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。">
+  <meta name="description" content="123import cv2cap &#x3D; cv2.VideoCapture(video_name)video_info &#x3D; [cap.get(i) for i in range(19)]     参数 propld 功能    CAP_PROP_POS_MSEC 0 视频文件的当前位置(以毫秒为单位)或视频捕获时间戳   CAP_PROP_POS_FRAMES 1 基于0的索引将被解码&#x2F;捕获下一帧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="感叹，两年前">
-<meta property="og:url" content="http://jeffrey86.github.io/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/index.html">
+<meta property="og:title" content="OpenCV参数">
+<meta property="og:url" content="http://jeffrey86.github.io/2020/12/20/OpenCV%E5%8F%82%E6%95%B0/index.html">
 <meta property="og:site_name" content="关于你的，我都感兴趣">
-<meta property="og:description" content="两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。 所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。">
+<meta property="og:description" content="123import cv2cap &#x3D; cv2.VideoCapture(video_name)video_info &#x3D; [cap.get(i) for i in range(19)]     参数 propld 功能    CAP_PROP_POS_MSEC 0 视频文件的当前位置(以毫秒为单位)或视频捕获时间戳   CAP_PROP_POS_FRAMES 1 基于0的索引将被解码&#x2F;捕获下一帧">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-04T11:44:01.000Z">
-<meta property="article:modified_time" content="2020-04-04T11:49:40.998Z">
+<meta property="article:published_time" content="2020-12-20T13:01:25.000Z">
+<meta property="article:modified_time" content="2020-12-20T13:02:28.883Z">
 <meta property="article:author" content="Jeffrey">
 <meta property="article:tag" content="DeepLearning,Python,PyTorch,Pi">
 <meta name="twitter:card" content="summary">
@@ -137,28 +137,132 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-感叹，两年前" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-OpenCV参数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      感叹，两年前
+      OpenCV参数
     </h1>
   
 
         
-        <a href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" class="archive-article-date">
-  	<time datetime="2020-04-04T11:44:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+        <a href="/2020/12/20/OpenCV%E5%8F%82%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2020-12-20T13:01:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。</p>
-<p>所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。</p>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">cap = cv2.VideoCapture(video_name)</span><br><span class="line">video_info = [cap.get(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">19</span>)]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">propld</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CAP_PROP_POS_MSEC</td>
+<td align="center">0</td>
+<td align="center">视频文件的当前位置(以毫秒为单位)或视频捕获时间戳</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_POS_FRAMES</td>
+<td align="center">1</td>
+<td align="center">基于0的索引将被解码/捕获下一帧</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_POS_AVI_RATIO</td>
+<td align="center">2</td>
+<td align="center">视频文件的相对位置:0 - 视频的开始, 1 - 视频的结束</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_FRAME_WIDTH</td>
+<td align="center">3</td>
+<td align="center">帧的宽度</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_FRAME_HEIGHT</td>
+<td align="center">4</td>
+<td align="center">帧的高度</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_FPS</td>
+<td align="center">5</td>
+<td align="center">帧速</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_FOURCC</td>
+<td align="center">6</td>
+<td align="center">4个字符表示的视频编码器格式</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_FRAME_COUNT</td>
+<td align="center">7</td>
+<td align="center">帧数</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_FORMAT</td>
+<td align="center">8</td>
+<td align="center">byretrieve()返回的Mat对象的格式</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_MODE</td>
+<td align="center">9</td>
+<td align="center">只是当前捕获模式的后端特定值</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_BRIGHTNESS</td>
+<td align="center">10</td>
+<td align="center">图像的亮度(仅用于相机)</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_CONTRAST</td>
+<td align="center">11</td>
+<td align="center">图像的对比度(仅用于相机)</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_SATURATION</td>
+<td align="center">12</td>
+<td align="center">图像的饱和度(仅用于相机)</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_HUE</td>
+<td align="center">13</td>
+<td align="center">图像的色相(仅用于相机)</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_GAIN</td>
+<td align="center">14</td>
+<td align="center">图像的增益(仅用于相机)</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_EXPOSURE</td>
+<td align="center">15</td>
+<td align="center">曝光(仅用于相机)</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_CONVERT_RGB</td>
+<td align="center">16</td>
+<td align="center">表示图像是否应转换为RGB的布尔标志</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_PROP_WHITE_BALANCE</td>
+<td align="center">17</td>
+<td align="center">目前不支持</td>
+</tr>
+<tr>
+<td align="center">CAP_PROP_RECTIFICATION</td>
+<td align="center">18</td>
+<td align="center">立体摄像机的整流标志</td>
+</tr>
+</tbody></table>
 
       
 
@@ -238,7 +342,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://jeffrey86.github.io/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://jeffrey86.github.io/2020/12/20/OpenCV%E5%8F%82%E6%95%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -252,18 +356,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/12/20/OpenCV%E5%8F%82%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          OpenCV参数
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">感叹，两年前</div>
       <i class="icon-circle-right"></i>
     </a>
   
