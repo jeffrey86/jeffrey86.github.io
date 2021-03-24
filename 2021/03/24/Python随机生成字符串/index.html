@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://jeffrey86.github.io">
-  <title>关于你的，我都感兴趣</title>
+  <title>Python随机生成字符串 | 关于你的，我都感兴趣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="感悟人生 总结自我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于你的，我都感兴趣">
-<meta property="og:url" content="http://jeffrey86.github.io/index.html">
+  <meta name="description" content="123456import randomimport string# 生成12组16位密码，含数字、字母和特殊字符for _ in range(12):    print(&amp;#x27;&amp;#x27;.join(random.sample(string.digits + string.ascii_letters + &quot;!@#$%^&amp;*&quot;, 16)))">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python随机生成字符串">
+<meta property="og:url" content="http://jeffrey86.github.io/2021/03/24/Python%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
 <meta property="og:site_name" content="关于你的，我都感兴趣">
-<meta property="og:description" content="感悟人生 总结自我">
+<meta property="og:description" content="123456import randomimport string# 生成12组16位密码，含数字、字母和特殊字符for _ in range(12):    print(&amp;#x27;&amp;#x27;.join(random.sample(string.digits + string.ascii_letters + &quot;!@#$%^&amp;*&quot;, 16)))">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-24T14:09:01.000Z">
+<meta property="article:modified_time" content="2021-03-24T14:09:16.016Z">
 <meta property="article:author" content="Jeffrey">
 <meta property="article:tag" content="DeepLearning,Python,PyTorch,Pi">
 <meta name="twitter:card" content="summary">
@@ -135,257 +137,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-DeepStream-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Python随机生成字符串" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/DeepStream-Python/">DeepStream-Python</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/DeepStream-Python/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:12:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Citation"><a href="#Citation" class="headerlink" title="Citation"></a>Citation</h2><p><a target="_blank" rel="noopener" href="https://github.com/NVIDIA-AI-IOT/deepstream_python_apps.git">https://github.com/NVIDIA-AI-IOT/deepstream_python_apps.git</a></p>
-<table>
-<thead>
-<tr>
-<th align="left">Demo</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="#deepstream-test-1">deepstream-test1</a></td>
-<td align="left">4-class object detection pipeline</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-2">deepstream-test2</a></td>
-<td align="left">4-class object detection, tracking and attribute classification pipeline</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-3">deepstream-test3</a></td>
-<td align="left">multi-stream pipeline performing 4-class object detection</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-4">deepstream-test4</a></td>
-<td align="left">msgbroker for sending analytics results to the cloud</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-imagedata-multistream">deepstream-imagedata-multistream</a></td>
-<td align="left">multi-stream pipeline with access to image buffers</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-ssd-parser">deepstream-ssd-parser</a></td>
-<td align="left">SSD model inference via Triton server with output parsing in Python</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-1-usbcam">deepstream-test1-usbcam</a></td>
-<td align="left">deepstream-test1 pipeline with USB camera input</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-1-rtsp-out">deepstream-test1-rtsp-out</a></td>
-<td align="left">deepstream-test1 pipeline with RTSP output</td>
-</tr>
-</tbody></table>
-<h2 id="deepstream-test-1"><a href="#deepstream-test-1" class="headerlink" title="deepstream-test-1"></a>deepstream-test-1</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-2"><a href="#deepstream-test-2" class="headerlink" title="deepstream-test-2"></a>deepstream-test-2</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvtracker =&gt; nvinfer =&gt; nvinfer =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">tracker&#x3D;&gt;operation: nvtracker</span><br><span class="line">secondary1_nvinference&#x3D;&gt;operation: nvinfer</span><br><span class="line">secondary2_nvinference&#x3D;&gt;operation: nvinfer</span><br><span class="line">secondary3_nvinference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;tracker-&gt;secondary1_nvinference-&gt;secondary2_nvinference-&gt;secondary3_nvinference-&gt;convertor-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-3"><a href="#deepstream-test-3" class="headerlink" title="deepstream-test-3"></a>deepstream-test-3</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uridecodebin(n) =&gt; nvstreammux =&gt; queue(queue1) =&gt; nvinfer =&gt; queue(queue2) =&gt; nvmultistreamtiler =&gt; queue(queue3) =&gt; nvvideoconvert =&gt; queue(queue4) =&gt; nvdsosd =&gt; queue(queue5) =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">uri_decode_bin_n&#x3D;&gt;start: uridecodebin(n)</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">queue1&#x3D;&gt;operation: queue</span><br><span class="line">queue2&#x3D;&gt;operation: queue</span><br><span class="line">queue3&#x3D;&gt;operation: queue</span><br><span class="line">queue4&#x3D;&gt;operation: queue</span><br><span class="line">queue5&#x3D;&gt;operation: queue</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">nvtiler&#x3D;&gt;operation: nvmultistreamtiler</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">uri_decode_bin_n-&gt;stream_muxer-&gt;queue1-&gt;primary_inference-&gt;queue2-&gt;nvtiler-&gt;queue3-&gt;convertor-&gt;queue4-&gt;on_screen_display-&gt;queue5-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-4"><a href="#deepstream-test-4" class="headerlink" title="deepstream-test-4"></a>deepstream-test-4</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; tee</span><br><span class="line">queue(queue1) =&gt; nvmsgconv =&gt; nvmsgbroker</span><br><span class="line">queue(queue2) =&gt; fakesink(nveglglessink)</span><br><span class="line">tee =&gt; queue(queue1)</span><br><span class="line">tee =&gt; queue(queue2)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvmsg_converter&#x3D;&gt;operation: nvmsgconv</span><br><span class="line">nvmsg_broker&#x3D;&gt;operation: nvmsgbroker</span><br><span class="line">nvsink_tee&#x3D;&gt;operation: tee</span><br><span class="line">nvtee_queue1&#x3D;&gt;subroutine: queue</span><br><span class="line">nvtee_queue2&#x3D;&gt;subroutine: queue</span><br><span class="line">fakessink&#x3D;&gt;end: fakessink</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">cond1&#x3D;&gt;condition: display?</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;nvsink_tee</span><br><span class="line"></span><br><span class="line">nvsink_tee-&gt;nvtee_queue1</span><br><span class="line">nvsink_tee-&gt;nvtee_queue2</span><br><span class="line"></span><br><span class="line">nvtee_queue1-&gt;nvmsg_converter-&gt;nvmsg_broker</span><br><span class="line">nvtee_queue2-&gt;cond1</span><br><span class="line"></span><br><span class="line">cond1(yes)-&gt;nvvideo_renderer</span><br><span class="line">cond1(no)-&gt;fakessink</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-imagedata-multistream"><a href="#deepstream-imagedata-multistream" class="headerlink" title="deepstream-imagedata-multistream"></a>deepstream-imagedata-multistream</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uridecodebin(n) =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; capsfilter =&gt; nvmultistreamtiler =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">uri_decode_bin_n&#x3D;&gt;start: uridecodebin</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor1&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">filter&#x3D;&gt;operation: capsfilter</span><br><span class="line">nvtiler&#x3D;&gt;operation: nvmultistreamtiler</span><br><span class="line">convertor2&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">uri_decode_bin_n-&gt;stream_muxer-&gt;primary_inference-&gt;convertor1-&gt;filter-&gt;nvtiler-&gt;convertor2-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-ssd-parser"><a href="#deepstream-ssd-parser" class="headerlink" title="deepstream-ssd-parser"></a>deepstream-ssd-parser</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nviferserver =&gt; nvvideoconvert =&gt; nvdsosd =&gt; queue =&gt; nvvideoconvert =&gt; capsfilter =&gt; avenc_mpeg4 =&gt; mpeg4videoparse =&gt; qtmux =&gt; filesink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinferserver</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">queue&#x3D;&gt;operation: queue</span><br><span class="line">convertor2&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">capsfilter&#x3D;&gt;operation: capsfilter</span><br><span class="line">encoder&#x3D;&gt;operation: avenc_mpeg4</span><br><span class="line">mpeg4_parser&#x3D;&gt;operation: mpeg4videoparse</span><br><span class="line">qtmux&#x3D;&gt;operation: qtmux</span><br><span class="line">filesink&#x3D;&gt;operation: filesink</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;queue-&gt;convertor2-&gt;capsfilter-&gt;encoder-&gt;mpeg4_parser-&gt;qtmux-&gt;filesink</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-1-usbcam"><a href="#deepstream-test-1-usbcam" class="headerlink" title="deepstream-test-1-usbcam"></a>deepstream-test-1-usbcam</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v4l2src =&gt; capsfilter =&gt; videoconvert =&gt; nvvideoconvert =&gt; capsfilter =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">usb_cam_source&#x3D;&gt;start: v4l2src</span><br><span class="line">v4l2src_caps&#x3D;&gt;operation: capsfilter</span><br><span class="line">convertor_src1&#x3D;&gt;operation: videoconvert</span><br><span class="line">convertor_src2&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">nvmm_caps&#x3D;&gt;operation: capsfilter</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">usb_cam_source-&gt;v4l2src_caps-&gt;convertor_src1-&gt;convertor_src2-&gt;nvmm_caps-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-1-rtsp-out"><a href="#deepstream-test-1-rtsp-out" class="headerlink" title="deepstream-test-1-rtsp-out"></a>deepstream-test-1-rtsp-out</h2><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nvvideoconvert =&gt; capsfilter =&gt; nvv4l2h264enc(nvv4l2h265enc) =&gt; rtph264pay(rtph265pay) =&gt; updsink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">convertot_post_osd&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">filter&#x3D;&gt;operation: capsfilter</span><br><span class="line">encoder_h264&#x3D;&gt;operation: nvv4l2h264enc</span><br><span class="line">encoder_h265&#x3D;&gt;operation: nvv4l2h265enc</span><br><span class="line">rtppay_h264&#x3D;&gt;operation: rtph264pay</span><br><span class="line">rtppay_h265&#x3D;&gt;operation: rtph265pay</span><br><span class="line">udpsink&#x3D;&gt;end: udpsink</span><br><span class="line"></span><br><span class="line">cond1&#x3D;&gt;condition: H264?</span><br><span class="line">cond2&#x3D;&gt;condition: H264?</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;filter-&gt;cond1</span><br><span class="line"></span><br><span class="line">cond1(yes)-&gt;encoder_h264-&gt;cond2</span><br><span class="line">cond1(no)-&gt;encoder_h265-&gt;cond2</span><br><span class="line">cond2(yes)-&gt;rtppay_h264-&gt;udpsink</span><br><span class="line">cond2(no)-&gt;rtppay_h265-&gt;udpsink</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/DeepStream-Python/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-GStreamer-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/GStreamer-Python/">GStreamer-Python</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/GStreamer-Python/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ul>
-<li>源组件(source elements): 不接受数据，仅产生数据</li>
-<li>通常组件(common elements)有过滤器(filters), 转换器(convertors), 分流器(demuxers), 整流器(muxers), 编译码器(codecs): 同时拥有输入和输出衬垫</li>
-<li>接收组件(sink elements): 接受数据但不产生任何数据</li>
-</ul>
-<h2 id="组件状态"><a href="#组件状态" class="headerlink" title="组件状态"></a>组件状态</h2><ul>
-<li>GST_STATE_NULL: 默认状态。该状态将回收被该组件占有的所有资源</li>
-<li>GST_STATE_READY: 准备状态。组件会得到所有需要的全局资源</li>
-<li>GST_STATE_PAUSED: 暂定状态。组件已经对流开始了处理，但此时刻暂停了处理( PAUSED 状态除了不能运行时钟外,其它与 PLAYING 状态一模一样)</li>
-<li>GST_STATE_PLAYING: 流动状态。</li>
-</ul>
-<h2 id="箱柜-bin"><a href="#箱柜-bin" class="headerlink" title="箱柜(bin)"></a>箱柜(bin)</h2><p>当移除箱柜时，箱柜中的组件同事被销毁</p>
-<p><strong>管道(Pipeline)其实就是一种特殊的箱柜(bin)</strong></p>
-<h2 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h2><p>总线是一个简单的系统，它采用自己的线程机制将一个管道线程的消息分发到一个应用程序当中。</p>
-<p>每一个管道默认包含一个总线。</p>
-<p>使用总线的两种方法:</p>
-<ul>
-<li>运行GLib/Gtk+ 主循环</li>
-<li>自己监听总线消息</li>
-</ul>
-<h2 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h2><ul>
-<li>错误、警告和消息提示</li>
-<li>数据流结束</li>
-<li>标签</li>
-<li>状态转换</li>
-<li>缓冲</li>
-<li>组件消息</li>
-<li>Application-specific</li>
-</ul>
-<h2 id="衬垫"><a href="#衬垫" class="headerlink" title="衬垫"></a>衬垫</h2><p>衬垫是组件对外的接口</p>
-<h2 id="缓冲区和事件"><a href="#缓冲区和事件" class="headerlink" title="缓冲区和事件"></a>缓冲区和事件</h2><p>缓冲区包含管道里的数据流</p>
-<p>事件是一系列控制粒子，随着缓冲区被发送到管道的上游和下游</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://orangeamoy.com/2019/06/28/GStreamerAndDeepStream/">http://orangeamoy.com/2019/06/28/GStreamerAndDeepStream/</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/fireroll/category_5641411.html">https://blog.csdn.net/fireroll/category_5641411.html</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/GStreamer-Python/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python随机生成字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/Python%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">Python随机生成字符串</a>
+    <h1 class="article-title" itemprop="name">
+      Python随机生成字符串
     </h1>
   
 
@@ -403,6 +162,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -410,16 +190,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/Python%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://jeffrey86.github.io/2021/03/24/Python%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/03/24/GStreamer-Python/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          GStreamer-Python
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/24/OpenCV%E4%B8%ADBGR%E8%BD%ACRGB%E7%9A%84%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OpenCV中BGR转RGB的方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -439,455 +287,14 @@
 
 
 
-
   
-    <article id="post-OpenCV中BGR转RGB的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/OpenCV%E4%B8%ADBGR%E8%BD%ACRGB%E7%9A%84%E6%96%B9%E6%B3%95/">OpenCV中BGR转RGB的方法</a>
-    </h1>
   
 
-        
-        <a href="/2021/03/24/OpenCV%E4%B8%ADBGR%E8%BD%ACRGB%E7%9A%84%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:06:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>cv2.imread默认读入图片的通道顺序为BGR(历史遗漏问题).<br>三种将BGR转换为RGB的方法:</p>
-<ul>
-<li>方法一</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">B, G, R = cv2.split(img)</span><br><span class="line">img = cv2.merge([R, G, B])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方法二</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方法三</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = img[:,:,::-<span class="number">1</span>] 或者</span><br><span class="line">img = img[..., ::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/OpenCV%E4%B8%ADBGR%E8%BD%ACRGB%E7%9A%84%E6%96%B9%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-base64与cv2互换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/base64%E4%B8%8Ecv2%E4%BA%92%E6%8D%A2/">base64与cv2互换</a>
-    </h1>
   
 
-        
-        <a href="/2021/03/24/base64%E4%B8%8Ecv2%E4%BA%92%E6%8D%A2/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:04:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cv2_base64</span>(<span class="params">image</span>):</span></span><br><span class="line">    base64_str = cv2.imencode(<span class="string">&#x27;.jpg&#x27;</span>,image)[<span class="number">1</span>].tostring()</span><br><span class="line">    base64_str = base64.b64encode(base64_str)</span><br><span class="line">    <span class="keyword">return</span> base64_str</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">base64_cv2</span>(<span class="params">base64_str</span>):</span></span><br><span class="line">    imgString = base64.b64decode(base64_str)</span><br><span class="line">    nparr = np.fromstring(imgString,np.uint8)</span><br><span class="line">    image = cv2.imdecode(nparr,cv2.IMREAD_COLOR)</span><br><span class="line">    <span class="keyword">return</span> image</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/base64%E4%B8%8Ecv2%E4%BA%92%E6%8D%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-OpenCV参数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/20/OpenCV%E5%8F%82%E6%95%B0/">OpenCV参数</a>
-    </h1>
   
 
-        
-        <a href="/2020/12/20/OpenCV%E5%8F%82%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-12-20T13:01:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">cap = cv2.VideoCapture(video_name)</span><br><span class="line">video_info = [cap.get(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">19</span>)]</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">propld</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">CAP_PROP_POS_MSEC</td>
-<td align="center">0</td>
-<td align="center">视频文件的当前位置(以毫秒为单位)或视频捕获时间戳</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_POS_FRAMES</td>
-<td align="center">1</td>
-<td align="center">基于0的索引将被解码/捕获下一帧</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_POS_AVI_RATIO</td>
-<td align="center">2</td>
-<td align="center">视频文件的相对位置:0 - 视频的开始, 1 - 视频的结束</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FRAME_WIDTH</td>
-<td align="center">3</td>
-<td align="center">帧的宽度</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FRAME_HEIGHT</td>
-<td align="center">4</td>
-<td align="center">帧的高度</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FPS</td>
-<td align="center">5</td>
-<td align="center">帧速</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FOURCC</td>
-<td align="center">6</td>
-<td align="center">4个字符表示的视频编码器格式</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FRAME_COUNT</td>
-<td align="center">7</td>
-<td align="center">帧数</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FORMAT</td>
-<td align="center">8</td>
-<td align="center">byretrieve()返回的Mat对象的格式</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_MODE</td>
-<td align="center">9</td>
-<td align="center">只是当前捕获模式的后端特定值</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_BRIGHTNESS</td>
-<td align="center">10</td>
-<td align="center">图像的亮度(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_CONTRAST</td>
-<td align="center">11</td>
-<td align="center">图像的对比度(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_SATURATION</td>
-<td align="center">12</td>
-<td align="center">图像的饱和度(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_HUE</td>
-<td align="center">13</td>
-<td align="center">图像的色相(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_GAIN</td>
-<td align="center">14</td>
-<td align="center">图像的增益(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_EXPOSURE</td>
-<td align="center">15</td>
-<td align="center">曝光(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_CONVERT_RGB</td>
-<td align="center">16</td>
-<td align="center">表示图像是否应转换为RGB的布尔标志</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_PROP_WHITE_BALANCE</td>
-<td align="center">17</td>
-<td align="center">目前不支持</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_RECTIFICATION</td>
-<td align="center">18</td>
-<td align="center">立体摄像机的整流标志</td>
-</tr>
-</tbody></table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/20/OpenCV%E5%8F%82%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-感叹，两年前" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/">感叹，两年前</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" class="archive-article-date">
-  	<time datetime="2020-04-04T11:44:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。</p>
-<p>所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/04/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/04/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -910,8 +317,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
