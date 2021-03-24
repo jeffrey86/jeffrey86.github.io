@@ -137,6 +137,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux常用小命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/24/Linux%E5%B8%B8%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/">Linux常用小命令</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/24/Linux%E5%B8%B8%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2021-03-24T14:18:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="删除没有依赖包配置文件"><a href="#删除没有依赖包配置文件" class="headerlink" title="删除没有依赖包配置文件"></a>删除没有依赖包配置文件</h2><p><code>dpkg -l | grep ^rc | awk &#39;&#123;print $2&#125;&#39; | sudo xargs dpkg -P</code></p>
+<h2 id="统计代码行数"><a href="#统计代码行数" class="headerlink" title="统计代码行数"></a>统计代码行数</h2><p><code>find -name &quot;*[.wxml|.js|.wxss]&quot; -type f | xargs cat | wc -l</code></p>
+<h2 id="zip包乱码"><a href="#zip包乱码" class="headerlink" title="zip包乱码"></a>zip包乱码</h2><p><code>unzip -O GB18030 文件</code></p>
+<h2 id="删除文件中的空行"><a href="#删除文件中的空行" class="headerlink" title="删除文件中的空行"></a>删除文件中的空行</h2><p><code>sed -i &#39;/^\s*$/d&#39; file</code></p>
+<h2 id="删除文件中每行的最后一个字符"><a href="#删除文件中每行的最后一个字符" class="headerlink" title="删除文件中每行的最后一个字符"></a>删除文件中每行的最后一个字符</h2><p><code>sed -i &#39;s/.$//&#39; filename</code></p>
+<h2 id="打乱文件中每行的顺序"><a href="#打乱文件中每行的顺序" class="headerlink" title="打乱文件中每行的顺序"></a>打乱文件中每行的顺序</h2><p><code>shuf input_file.txt -o  output_file.txt</code></p>
+<h2 id="强制活动用户退出"><a href="#强制活动用户退出" class="headerlink" title="强制活动用户退出"></a>强制活动用户退出</h2><p><code>pkill -kill -t pts/xx</code></p>
+<h2 id="强制杀死某个进程"><a href="#强制杀死某个进程" class="headerlink" title="强制杀死某个进程"></a>强制杀死某个进程</h2><p><code>kill -9 xxx</code></p>
+<h2 id="文件管理器死掉情况"><a href="#文件管理器死掉情况" class="headerlink" title="文件管理器死掉情况"></a>文件管理器死掉情况</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ps -A | grep nautilus</span><br><span class="line"></span><br><span class="line"><span class="built_in">kill</span> pid or killall nautilus</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看用户登录"><a href="#查看用户登录" class="headerlink" title="查看用户登录"></a>查看用户登录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lastlog</span><br><span class="line"></span><br><span class="line">w</span><br><span class="line"></span><br><span class="line">who</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="bashrc写错时"><a href="#bashrc写错时" class="headerlink" title="bashrc写错时"></a>bashrc写错时</h2><p><code>export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin</code></p>
+<h2 id="显示前10个占用空间最大的文件或目录"><a href="#显示前10个占用空间最大的文件或目录" class="headerlink" title="显示前10个占用空间最大的文件或目录"></a>显示前10个占用空间最大的文件或目录</h2><p><code>du -s * | sort -nr | head</code></p>
+<h2 id="查找占空间最大的文件与目录"><a href="#查找占空间最大的文件与目录" class="headerlink" title="查找占空间最大的文件与目录"></a>查找占空间最大的文件与目录</h2><p><code>du –max-depth=1 linux</code></p>
+<h2 id="这样可以查找出大于100M的文件-按需求删除就可"><a href="#这样可以查找出大于100M的文件-按需求删除就可" class="headerlink" title="这样可以查找出大于100M的文件,按需求删除就可"></a>这样可以查找出大于100M的文件,按需求删除就可</h2><p><code>find / -size +204800</code></p>
+<h2 id="查找大于2K的文件，-表示大于"><a href="#查找大于2K的文件，-表示大于" class="headerlink" title="查找大于2K的文件，+ 表示大于"></a>查找大于2K的文件，+ 表示大于</h2><p><code>find ./ -size +2048c</code></p>
+<h2 id="查找小于2K的文件，-表示小于"><a href="#查找小于2K的文件，-表示小于" class="headerlink" title="查找小于2K的文件，- 表示小于"></a>查找小于2K的文件，- 表示小于</h2><p><code>find ./ -size +2048c -type f</code></p>
+<h2 id="免密码登录"><a href="#免密码登录" class="headerlink" title="免密码登录"></a>免密码登录</h2><p><code>ssh-copy-id username@remote-server</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/24/Linux%E5%B8%B8%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-DeepStream-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
