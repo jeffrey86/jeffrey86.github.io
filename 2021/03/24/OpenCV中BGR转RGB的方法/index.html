@@ -16,9 +16,9 @@
 <meta property="og:description" content="cv2.imread默认读入图片的通道顺序为BGR(历史遗漏问题).三种将BGR转换为RGB的方法:  方法一  12B, G, R &#x3D; cv2.split(img)img &#x3D; cv2.merge([R, G, B])   方法二  1img &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2RGB)   方法三  12img &#x3D; img[:,:,::-1] 或者img &#x3D; im">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-24T14:06:49.000Z">
-<meta property="article:modified_time" content="2021-03-24T14:07:45.837Z">
+<meta property="article:modified_time" content="2021-03-25T00:33:12.471Z">
 <meta property="article:author" content="Jeffrey">
-<meta property="article:tag" content="DeepLearning,Python,PyTorch,Pi">
+<meta property="article:tag" content="OpenCV">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="关于你的，我都感兴趣" type="application/atom+xml">
@@ -201,6 +201,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OpenCV</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -405,6 +416,22 @@ MathJax.Hub.Queue(function() {
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OpenCV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Life</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
