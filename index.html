@@ -137,6 +137,823 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Jetson安装系统后应该做的事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/">Jetson安装系统后应该做的事</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/" class="archive-article-date">
+  	<time datetime="2021-03-25T01:02:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="卸载用不上的软件"><a href="#卸载用不上的软件" class="headerlink" title="卸载用不上的软件"></a>卸载用不上的软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove libreoffice-common -y</span><br><span class="line">sudo apt remove thunderbird totem rhythmbox aisleriot simple-scan evince remmina shotwell -y</span><br><span class="line">sudo apt remove gnome-mines gnome-mahjongg gnome-sudoku gnome-calculator -y</span><br><span class="line">sudo apt autoremove -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><p><code>sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt autoremove -y &amp;&amp; dpkg -l | grep ^rc | awk &#39;&#123;print $2&#125;&#39; | sudo xargs dpkg -P</code></p>
+<h2 id="安装需要的包"><a href="#安装需要的包" class="headerlink" title="安装需要的包"></a>安装需要的包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git vim 系统自带</span></span><br><span class="line">sudo apt install python-pip python3-pip -y</span><br><span class="line">sudo apt install libhdf5-serial-dev hdf5-tools libatlas-base-dev libopenblas-dev libopenmpi-dev gfortran -y</span><br><span class="line">sudo apt install libjpeg-dev zlib1g-dev -y <span class="comment"># torchvision 要求</span></span><br><span class="line">sudo apt install libfreetype6-dev -y       <span class="comment"># matplotlib 要求</span></span><br><span class="line">sudo apt install tmux -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="将cuda与tensorrt路径添加到系统变量"><a href="#将cuda与tensorrt路径添加到系统变量" class="headerlink" title="将cuda与tensorrt路径添加到系统变量"></a>将cuda与tensorrt路径添加到系统变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;<span class="string">EOF &gt;&gt;.bashrc</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># CUDA current version:10.2</span></span><br><span class="line"><span class="string">export PATH=&quot;/usr/local/cuda/bin:\$PATH&quot;</span></span><br><span class="line"><span class="string">export LD_LIBRARY_PATH=&quot;/usr/local/cuda/lib64:\$LD_LIBRARY_PATH&quot;</span></span><br><span class="line"><span class="string">export C_INCLUDE_PATH=&quot;/usr/local/include:\$C_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string">export CPLUS_INCLUDE_PATH=&quot;/usr/local/cuda/include:\$CPLUS_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># TensorRT current version:7.1</span></span><br><span class="line"><span class="string">export LD_LIBRARY_PATH=&quot;/usr/lib/aarch64-linux-gnu:\$LD_LIBRARY_PATH&quot;</span></span><br><span class="line"><span class="string">export CPLUS_INCLUDE_PATH=&quot;/usr/include/aarch64-linux-gnu:\$CPLUS_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string">export C_INCLUDE_PATH=&quot;/usr/include/aarch64-linux-gnu:\$C_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="功率与风扇"><a href="#功率与风扇" class="headerlink" title="功率与风扇"></a>功率与风扇</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 功率</span></span><br><span class="line">sudo jetson_clocks <span class="comment"># 启动性能最大模式</span></span><br><span class="line">sudo nvpmodel -m 0 <span class="comment"># 0 设为(10W)高功率模式, 1 设为(5W)低功率模式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自启风扇 jetson-fan-ctl</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Pyrestone/jetson-fan-ctl.git</span><br><span class="line"><span class="built_in">cd</span> jetson-fan-ctl &amp;&amp; sudo ./install.sh &amp;&amp; <span class="built_in">cd</span> .. &amp;&amp; rm -rf jetson-fan-ctl</span><br></pre></td></tr></table></figure>
+
+<h2 id="jtop"><a href="#jtop" class="headerlink" title="jtop"></a>jtop</h2><p><code>sudo pip3 install jetson-stats</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -U cython <span class="comment"># 一定先装cython，否则numpy会安装失败</span></span><br><span class="line">pip3 install -U pycuda numpy</span><br><span class="line">pip3 install -U matplotlib <span class="comment"># 先执行 pip3 install --upgrade setuptools &amp;&amp; sudo apt install libfreetype6-dev -y</span></span><br><span class="line">pip3 install -U  scipy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 深度学习</span></span><br><span class="line"><span class="comment"># 参考https://forums.developer.nvidia.com/t/pytorch-for-jetson-nano-version-1-5-0-now-available/72048</span></span><br><span class="line"><span class="comment"># 安装pytorch, torchvision, torch2trt</span></span><br><span class="line">wget https://nvidia.box.com/shared/static/9eptse6jyly1ggt9axbja2yrmj6pbarc.whl -O torch-1.6.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line">pip3 install torch-1.6.0-cp36-cp36m-linux_aarch64.whl --user &amp;&amp; rm torch-1.6.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> --branch release/0.7 https://github.com/pytorch/vision torchvision</span><br><span class="line"><span class="built_in">cd</span> torchvision &amp;&amp; python3 setup.py install --user &amp;&amp; <span class="built_in">cd</span> .. &amp;&amp; rm -rf torchvision</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/torch2trt.git</span><br><span class="line"><span class="built_in">cd</span> torch2trt &amp;&amp; python3 setup.py install --user &amp;&amp; <span class="built_in">cd</span> .. &amp;&amp; rm -rf torch2trt</span><br><span class="line"><span class="comment"># onnxruntime</span></span><br><span class="line">https://developer.nvidia.com/blog/announcing-onnx-runtime-for-jetson/</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩大Swap分区"><a href="#扩大Swap分区" class="headerlink" title="扩大Swap分区"></a>扩大Swap分区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SWAP_FILE=<span class="string">&quot;/var/swapfile&quot;</span> &amp;&amp; sudo fallocate -l 2G <span class="variable">$&#123;SWAP_FILE&#125;</span> &amp;&amp; sudo chmod 600 <span class="variable">$&#123;SWAP_FILE&#125;</span> &amp;&amp; sudo mkswap <span class="variable">$&#123;SWAP_FILE&#125;</span> &amp;&amp; sudo swapon <span class="variable">$&#123;SWAP_FILE&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动启用swapfile</span></span><br><span class="line">sudo bash -c <span class="string">&#x27;echo &quot;/var/swapfile swap swap defaults 0 0&quot; &gt;&gt; /etc/fstab&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="编译OpenCV-With-CUDA"><a href="#编译OpenCV-With-CUDA" class="headerlink" title="编译OpenCV With CUDA"></a>编译OpenCV With CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参考 https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh</span></span><br><span class="line"><span class="comment">#      https://docs.opencv.org/4.3.0/d7/d9f/tutorial_linux_install.html</span></span><br><span class="line">sudo apt-get purge *libopencv* -y</span><br><span class="line"></span><br><span class="line">sudo apt-get install build-essential cmake git pkg-config</span><br><span class="line">sudo apt install libavcodec-dev libavformat-dev libswscale-dev \</span><br><span class="line">  libv4l-dev libxvidcore-dev libx264-dev libatlas-base-dev liblapacke-dev \</span><br><span class="line">  libgtk2.0-dev libjpeg-dev libpng-dev libtiff-dev libtiff5-dev libtbb2 libtbb-dev \</span><br><span class="line">  libopenjpip7 libopenjp2-7-dev libavresample-dev libdc1394-22-dev -y</span><br><span class="line">sudo apt install qv4l2 v4l2ucp gfortran ffmpeg -y</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;** Download opencv-4.4.0&quot;</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$folder</span></span><br><span class="line">curl -L https://github.com/opencv/opencv/archive/4.4.0.zip -o opencv-4.4.0.zip</span><br><span class="line">curl -L https://github.com/opencv/opencv_contrib/archive/4.4.0.zip -o opencv_contrib-4.4.0.zip</span><br><span class="line">unzip opencv-4.4.0.zip</span><br><span class="line">unzip opencv_contrib-4.4.0.zip</span><br><span class="line"><span class="built_in">cd</span> opencv-4.4.0/</span><br><span class="line"></span><br><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">  -D CMAKE_INSTALL_PREFIX=/usr/<span class="built_in">local</span> \</span><br><span class="line">  -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \</span><br><span class="line">  -D OPENCV_DNN_CUDA=ON \</span><br><span class="line">  -D OPENCV_ENABLE_NONFREE=ON \</span><br><span class="line">  -D OPENCV_GENERATE_PKGCONFIG=ON \</span><br><span class="line">  -D INSTALL_PYTHON_EXAMPLES=OFF \</span><br><span class="line">  -D INSTALL_C_EXAMPLES=OFF \</span><br><span class="line">  -D BUILD_DOCS=OFF \</span><br><span class="line">  -D BUILD_TESTS=OFF \</span><br><span class="line">  -D BUILD_EXAMPLES=OFF \</span><br><span class="line">  -D BUILD_PERF_TESTS=OFF \</span><br><span class="line">  -D BUILD_OPENCV_DNN=ON \</span><br><span class="line">  -D BUILD_OPENCV_PYTHON2=ON \</span><br><span class="line">  -D BUILD_OPENCV_PYTHON3=ON \</span><br><span class="line">  -D BUILD_SHARED_LIBS=ON \</span><br><span class="line">  -D BUILD_TIFF=OFF \</span><br><span class="line">  -D TINYDNN_USE_NNPACK=OFF \</span><br><span class="line">  -D TINYDNN_USE_TBB=ON \</span><br><span class="line">  -D TINYDNN_USE_OMP=ON \</span><br><span class="line">  -D ENABLE_FAST_MATH=ON \</span><br><span class="line">  -D WITH_WEBP=OFF \</span><br><span class="line">  -D WITH_GSTREAMER=ON \</span><br><span class="line">  -D WITH_GSTREAMER_0_10=OFF \</span><br><span class="line">  -D WITH_LIBV4L=ON \</span><br><span class="line">  -D WITH_V4L=ON \</span><br><span class="line">  -D WITH_OPENGL=ON \</span><br><span class="line">  -D WITH_FFMPEG=ON \</span><br><span class="line">  -D WITH_OPENMP=ON \</span><br><span class="line">  -D WITH_JPEG=ON \</span><br><span class="line">  -D WITH_IPP=OFF \</span><br><span class="line">  -D WITH_TBB=ON \</span><br><span class="line">  -D WITH_CUBLAS=ON \</span><br><span class="line">  -D WITH_CUDA=ON \</span><br><span class="line">  -D WITH_CUDNN=ON \</span><br><span class="line">  -D WITH_NVCUVID=ON \</span><br><span class="line">  -D CUDA_ARCH_BIN=5.3 \</span><br><span class="line">  -D CUDA_ARCH_PTX=5.3 \</span><br><span class="line">  -D CUDA_FAST_MATH=ON \</span><br><span class="line">  -D CUDNN_VERSION=8.0 \</span><br><span class="line">  -D ENABLE_PRECOMPILED_HEADERS=OFF \</span><br><span class="line">  -D ENABLE_NEON=ON \</span><br><span class="line">  -D MKL_WITH_TBB=ON \</span><br><span class="line">  -D MKL_WITH_OPENMP=ON \</span><br><span class="line">  ..</span><br><span class="line"></span><br><span class="line">make -j$(nproc)</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="关闭与开启图形化界面"><a href="#关闭与开启图形化界面" class="headerlink" title="关闭与开启图形化界面"></a>关闭与开启图形化界面</h2><ul>
+<li>关闭 <code>sudo systemctl set-default multi-user.target &amp;&amp; sudo reboot</code></li>
+<li>开启 <code>sudo systemctl set-default graphical.target &amp;&amp; sudo reboot</code></li>
+</ul>
+<h2 id="获取SN码"><a href="#获取SN码" class="headerlink" title="获取SN码"></a>获取SN码</h2><p><code>cat /proc/device-tree/serial-number</code></p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#v4l2-ctl --set-fmt-video=width=640,height=480,pixelformat=MJPG</span></span><br><span class="line"><span class="comment">#v4l2-ctl -d 0 --list-formats-ext</span></span><br><span class="line">code: <span class="built_in">cap</span> = cv2.VideoCaptrue(0, cv2.CAP_V4L) <span class="comment"># 搞定</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装numba"><a href="#安装numba" class="headerlink" title="安装numba"></a>安装numba</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install llvm-dev</span><br><span class="line">pip3 install llvmlite</span><br><span class="line">pip3 install numba</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">https://medium.com/@yanweiliu/nvidia-jetson-nano%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%B8%80-%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8-4dce57a0b2b1</span><br><span class="line">http://www.gpus.cn/gpus_list_page_techno_support_content?id=39</span><br><span class="line">https://zhuanlan.zhihu.com/p/80809006</span><br><span class="line">https://dev.classmethod.jp/articles/jetson-nano-deepcomposer-workshop-lab2/</span><br><span class="line">https://medium.com/hackers-terminal/installing-pytorch-torchvision-on-nvidias-jetson-tx2-81591d03ce32</span><br><span class="line">https://cloud.tencent.com/developer/article/1369088</span><br><span class="line">https://stackoverflow.com/questions/15435988/does-opencv-support-v4l2</span><br><span class="line">https://github.com/Pyrestone/jetson-fan-ctl</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jetson</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Jetson安装numba" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85numba/">Jetson安装numba</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85numba/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:54:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 应该可以，但我没试过</span></span><br><span class="line">sudo apt install python3-numba</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install llvm-10-dev</span><br><span class="line"><span class="comment"># 添加 export LLVM_CONFIG=/usr/lib/llvm-10/bin/llvm-config 到 .bashrc</span></span><br><span class="line"><span class="comment"># 然后 source .bashrc</span></span><br><span class="line"><span class="comment"># 或者 cd /usr/bin &amp;&amp; ln -s llvm-config-10 llvm-config</span></span><br><span class="line">pip3 install --user -U llvmlite</span><br><span class="line">sudo mv /usr/include/tbb/tbb.h /usr/include/tbb/tbb.h.backup</span><br><span class="line">pip3 install --user -U numba</span><br><span class="line">sudo mv /usr/include/tbb/tbb.h.backup /usr/include/tbb/tbb.h</span><br><span class="line"><span class="comment"># 这样装上去用不了TBB,哈哈哈!!!</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法三-推荐"><a href="#方法三-推荐" class="headerlink" title="方法三(推荐)"></a>方法三(推荐)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install llvm-8</span><br><span class="line"><span class="comment"># 添加 export LLVM_CONFIG=/usr/lib/llvm-8/bin/llvm-config 到 .bashrc</span></span><br><span class="line"><span class="comment"># 然后 source .bashrc</span></span><br><span class="line"><span class="comment"># 或者 cd /usr/bin &amp;&amp; ln -s llvm-config-8 llvm-config</span></span><br><span class="line">pip3 install numba==0.48</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jetson</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85numba/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-手装NVIDIA驱动-更新内核问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/%E6%89%8B%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8-%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8%E9%97%AE%E9%A2%98/">手装NVIDIA驱动,更新内核问题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/%E6%89%8B%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8-%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:53:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><code>nvidia-smi</code></p>
+<blockquote>
+<p>NVIDIA-SMI has failed because it couldn’t communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.</p>
+</blockquote>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install dkms</span><br><span class="line"><span class="comment"># 查询版本号</span></span><br><span class="line">ls /usr/src | grep nvidia</span><br><span class="line">sudo dkms install -m nvidia -v 版本号</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/89714824">https://zhuanlan.zhihu.com/p/89714824</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/%E6%89%8B%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8-%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Vim常用指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/Vim%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">Vim常用指令</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/Vim%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:48:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="命令模式常用命令"><a href="#命令模式常用命令" class="headerlink" title="命令模式常用命令"></a>命令模式常用命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dd</td>
+<td align="left">删除(剪切)光标所在整行</td>
+</tr>
+<tr>
+<td align="left">5dd</td>
+<td align="left">删除(剪切)从光标处开始的 5 行</td>
+</tr>
+<tr>
+<td align="left">yy</td>
+<td align="left">复制光标所在整行</td>
+</tr>
+<tr>
+<td align="left">5yy</td>
+<td align="left">复制从光标处开始的 5 行</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td align="left">显示搜索命令定位到的下一个字符串</td>
+</tr>
+<tr>
+<td align="left">N</td>
+<td align="left">显示搜索命令定位到的上一个字符串</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td align="left">撤销上一步的操作</td>
+</tr>
+<tr>
+<td align="left">p</td>
+<td align="left">将之前删除(dd)或复制(yy)过的数据粘贴到光标后面</td>
+</tr>
+</tbody></table>
+<h2 id="末行模式中可用的命令"><a href="#末行模式中可用的命令" class="headerlink" title="末行模式中可用的命令"></a>末行模式中可用的命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:w</td>
+<td align="left">保存</td>
+</tr>
+<tr>
+<td align="left">:q</td>
+<td align="left">退出</td>
+</tr>
+<tr>
+<td align="left">:q!</td>
+<td align="left">强制退出(放弃对文档的修改内容)</td>
+</tr>
+<tr>
+<td align="left">:wq!</td>
+<td align="left">强制保存退出</td>
+</tr>
+<tr>
+<td align="left">:set nu</td>
+<td align="left">显示行号</td>
+</tr>
+<tr>
+<td align="left">:set nonu</td>
+<td align="left">不显示行号</td>
+</tr>
+<tr>
+<td align="left">:命令</td>
+<td align="left">执行该命令</td>
+</tr>
+<tr>
+<td align="left">:整数</td>
+<td align="left">跳转到该行</td>
+</tr>
+<tr>
+<td align="left">:s/one/two</td>
+<td align="left">将当前光标所在行的第一个 one 替换成 two</td>
+</tr>
+<tr>
+<td align="left">:s/one/two/g</td>
+<td align="left">将当前光标所在行的所有 one 替换成 two</td>
+</tr>
+<tr>
+<td align="left">:%s/one/two/g</td>
+<td align="left">将全文中的所有 one 替换成 two</td>
+</tr>
+<tr>
+<td align="left">?字符串</td>
+<td align="left">在文本中从下至上搜索该字符串</td>
+</tr>
+<tr>
+<td align="left">/字符串</td>
+<td align="left">在文本中从上至下搜索该字符串</td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/Vim%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux根目录解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/Linux%E6%A0%B9%E7%9B%AE%E5%BD%95%E8%A7%A3%E6%9E%90/">Linux根目录解析</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/Linux%E6%A0%B9%E7%9B%AE%E5%BD%95%E8%A7%A3%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:46:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table>
+<thead>
+<tr>
+<th align="left">目录名称</th>
+<th align="left">应放置文件的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/boot</td>
+<td align="left">开机所需文件—内核、开机菜单以及所需配置文件等</td>
+</tr>
+<tr>
+<td align="left">/dev</td>
+<td align="left">以文件形式存放任何设备与接口</td>
+</tr>
+<tr>
+<td align="left">/etc</td>
+<td align="left">配置文件</td>
+</tr>
+<tr>
+<td align="left">/home</td>
+<td align="left">用户家目录</td>
+</tr>
+<tr>
+<td align="left">/bin</td>
+<td align="left">存放单用户模式下还可以操作的命令</td>
+</tr>
+<tr>
+<td align="left">/lib</td>
+<td align="left">开机时用到的函数库,以及/bin 与/sbin 下面的命令要调用的函数</td>
+</tr>
+<tr>
+<td align="left">/sbin</td>
+<td align="left">开机过程中需要的命令</td>
+</tr>
+<tr>
+<td align="left">/media</td>
+<td align="left">用于挂载设备文件的目录</td>
+</tr>
+<tr>
+<td align="left">/opt</td>
+<td align="left">放置第三方的软件</td>
+</tr>
+<tr>
+<td align="left">/root</td>
+<td align="left">系统管理员的家目录</td>
+</tr>
+<tr>
+<td align="left">/srv</td>
+<td align="left">一些网络服务的数据文件目录</td>
+</tr>
+<tr>
+<td align="left">/tmp</td>
+<td align="left">任何人均可使用的“共享”临时目录</td>
+</tr>
+<tr>
+<td align="left">/proc</td>
+<td align="left">虚拟文件系统,例如系统内核、进程、外部设备及网络状态等</td>
+</tr>
+<tr>
+<td align="left">/usr/local</td>
+<td align="left">用户自行安装的软件</td>
+</tr>
+<tr>
+<td align="left">/usr/sbin</td>
+<td align="left">Linux 系统开机时不会使用到的软件/命令/脚本</td>
+</tr>
+<tr>
+<td align="left">/usr/share</td>
+<td align="left">帮助与说明文件,也可放置共享文件</td>
+</tr>
+<tr>
+<td align="left">/var</td>
+<td align="left">主要存放经常变化的文件,如日志</td>
+</tr>
+<tr>
+<td align="left">/lost+found</td>
+<td align="left">当文件系统发生错误时,将一些丢失的文件片段存放在这里</td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/Linux%E6%A0%B9%E7%9B%AE%E5%BD%95%E8%A7%A3%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-查看局域网内所有主机的IP和MAC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/%E6%9F%A5%E7%9C%8B%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA%E7%9A%84IP%E5%92%8CMAC/">查看局域网内所有主机的IP和MAC</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/%E6%9F%A5%E7%9C%8B%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA%E7%9A%84IP%E5%92%8CMAC/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:45:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用nmap对局域网扫描一遍，然后查看arp缓存表就可以知道局域内ip对应的mac了。nmap比较强大也可以直接扫描mac地址和端口。执行扫描之后就可以 cat /proc/net/arp查看arp缓存表了</p>
+<p>进行ping扫描,打印出对扫描做出响应的主机:</p>
+<p><code>nmap -sP 192.168.1.0/24</code></p>
+<p>仅列出指定网络上的每台主机,不发送如何报文到目标主机:</p>
+<p><code>nmap -sL 192.168.1.0/24</code></p>
+<p>探测目标主机开放端口,可以指定一个以逗号分隔的端口列表(-PS 22, 23, 25, 80):</p>
+<p><code>nmap -PS 192.168.1.234</code></p>
+<p>使用UDP ping探测主机:</p>
+<p><code>nmap -PU 192.168.1.0/24</code></p>
+<p>使用频率最高的扫描选项(SYN扫描–半开放扫描),它不打开一个完全的TCP连接,执行很快:</p>
+<p><code>nmap -sS 192.168.1.0/24</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/%E6%9F%A5%E7%9C%8B%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA%E7%9A%84IP%E5%92%8CMAC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux烧录镜像到SD卡" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/Linux%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F%E5%88%B0SD%E5%8D%A1/">Linux烧录镜像到SD卡</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/Linux%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F%E5%88%B0SD%E5%8D%A1/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:44:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://transion.cc/posts/install_manjaro_xfce_in_raspberry_pi_4B/">参考</a></p>
+<h2 id="1-查看SD卡路径"><a href="#1-查看SD卡路径" class="headerlink" title="1. 查看SD卡路径"></a>1. 查看SD卡路径</h2><p><code>dmesg | tail | grep sd</code></p>
+<h2 id="2-提取"><a href="#2-提取" class="headerlink" title="2. 提取"></a>2. 提取</h2><h3 id="2-1-xz镜像"><a href="#2-1-xz镜像" class="headerlink" title="2.1 xz镜像"></a>2.1 xz镜像</h3><p><code>sudo xz -cd xxxx.img.xz&gt; /dev/sd&lt;x&gt;</code></p>
+<h3 id="2-2-img镜像"><a href="#2-2-img镜像" class="headerlink" title="2.2 img镜像"></a>2.2 img镜像</h3><p><code>sudo dd bs=1M if=xxxx.img of=/dev/sd&lt;x&gt; status=progress</code></p>
+<h3 id="2-3-iso镜像"><a href="#2-3-iso镜像" class="headerlink" title="2.3 iso镜像"></a>2.3 iso镜像</h3><p><code>sudo dd bs=1M if=xxxx.iso of=/dev/sd&lt;x&gt; status=progress</code></p>
+<h3 id="2-4-zip压缩文件"><a href="#2-4-zip压缩文件" class="headerlink" title="2.4 zip压缩文件"></a>2.4 zip压缩文件</h3><p><code>/usr/bin/unzip -p ~/Downloads/jetson_nano_devkit_sd_card.zip | sudo /bin/dd of=/dev/sd&lt;x&gt; bs=1M status=progress</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/Linux%E7%83%A7%E5%BD%95%E9%95%9C%E5%83%8F%E5%88%B0SD%E5%8D%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-解决zsh无法使用星号匹配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/%E8%A7%A3%E5%86%B3zsh%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%98%9F%E5%8F%B7%E5%8C%B9%E9%85%8D/">解决zsh无法使用*匹配</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/%E8%A7%A3%E5%86%B3zsh%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%98%9F%E5%8F%B7%E5%8C%B9%E9%85%8D/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:42:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>.zshrc 添加 <code>setopt nonomatch</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/%E8%A7%A3%E5%86%B3zsh%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E6%98%9F%E5%8F%B7%E5%8C%B9%E9%85%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-awk常见应用场景" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -335,834 +1152,10 @@
 
 
   
-    <article id="post-DeepStream-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/DeepStream-Python/">DeepStream-Python</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/DeepStream-Python/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:12:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Citation"><a href="#Citation" class="headerlink" title="Citation"></a>Citation</h2><p><a target="_blank" rel="noopener" href="https://github.com/NVIDIA-AI-IOT/deepstream_python_apps.git">https://github.com/NVIDIA-AI-IOT/deepstream_python_apps.git</a></p>
-<table>
-<thead>
-<tr>
-<th align="left">Demo</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="#deepstream-test-1">deepstream-test1</a></td>
-<td align="left">4-class object detection pipeline</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-2">deepstream-test2</a></td>
-<td align="left">4-class object detection, tracking and attribute classification pipeline</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-3">deepstream-test3</a></td>
-<td align="left">multi-stream pipeline performing 4-class object detection</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-4">deepstream-test4</a></td>
-<td align="left">msgbroker for sending analytics results to the cloud</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-imagedata-multistream">deepstream-imagedata-multistream</a></td>
-<td align="left">multi-stream pipeline with access to image buffers</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-ssd-parser">deepstream-ssd-parser</a></td>
-<td align="left">SSD model inference via Triton server with output parsing in Python</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-1-usbcam">deepstream-test1-usbcam</a></td>
-<td align="left">deepstream-test1 pipeline with USB camera input</td>
-</tr>
-<tr>
-<td align="left"><a href="#deepstream-test-1-rtsp-out">deepstream-test1-rtsp-out</a></td>
-<td align="left">deepstream-test1 pipeline with RTSP output</td>
-</tr>
-</tbody></table>
-<h2 id="deepstream-test-1"><a href="#deepstream-test-1" class="headerlink" title="deepstream-test-1"></a>deepstream-test-1</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-2"><a href="#deepstream-test-2" class="headerlink" title="deepstream-test-2"></a>deepstream-test-2</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvtracker =&gt; nvinfer =&gt; nvinfer =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">tracker&#x3D;&gt;operation: nvtracker</span><br><span class="line">secondary1_nvinference&#x3D;&gt;operation: nvinfer</span><br><span class="line">secondary2_nvinference&#x3D;&gt;operation: nvinfer</span><br><span class="line">secondary3_nvinference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;tracker-&gt;secondary1_nvinference-&gt;secondary2_nvinference-&gt;secondary3_nvinference-&gt;convertor-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-3"><a href="#deepstream-test-3" class="headerlink" title="deepstream-test-3"></a>deepstream-test-3</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uridecodebin(n) =&gt; nvstreammux =&gt; queue(queue1) =&gt; nvinfer =&gt; queue(queue2) =&gt; nvmultistreamtiler =&gt; queue(queue3) =&gt; nvvideoconvert =&gt; queue(queue4) =&gt; nvdsosd =&gt; queue(queue5) =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">uri_decode_bin_n&#x3D;&gt;start: uridecodebin(n)</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">queue1&#x3D;&gt;operation: queue</span><br><span class="line">queue2&#x3D;&gt;operation: queue</span><br><span class="line">queue3&#x3D;&gt;operation: queue</span><br><span class="line">queue4&#x3D;&gt;operation: queue</span><br><span class="line">queue5&#x3D;&gt;operation: queue</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">nvtiler&#x3D;&gt;operation: nvmultistreamtiler</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">uri_decode_bin_n-&gt;stream_muxer-&gt;queue1-&gt;primary_inference-&gt;queue2-&gt;nvtiler-&gt;queue3-&gt;convertor-&gt;queue4-&gt;on_screen_display-&gt;queue5-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-4"><a href="#deepstream-test-4" class="headerlink" title="deepstream-test-4"></a>deepstream-test-4</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; tee</span><br><span class="line">queue(queue1) =&gt; nvmsgconv =&gt; nvmsgbroker</span><br><span class="line">queue(queue2) =&gt; fakesink(nveglglessink)</span><br><span class="line">tee =&gt; queue(queue1)</span><br><span class="line">tee =&gt; queue(queue2)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvmsg_converter&#x3D;&gt;operation: nvmsgconv</span><br><span class="line">nvmsg_broker&#x3D;&gt;operation: nvmsgbroker</span><br><span class="line">nvsink_tee&#x3D;&gt;operation: tee</span><br><span class="line">nvtee_queue1&#x3D;&gt;subroutine: queue</span><br><span class="line">nvtee_queue2&#x3D;&gt;subroutine: queue</span><br><span class="line">fakessink&#x3D;&gt;end: fakessink</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">cond1&#x3D;&gt;condition: display?</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;nvsink_tee</span><br><span class="line"></span><br><span class="line">nvsink_tee-&gt;nvtee_queue1</span><br><span class="line">nvsink_tee-&gt;nvtee_queue2</span><br><span class="line"></span><br><span class="line">nvtee_queue1-&gt;nvmsg_converter-&gt;nvmsg_broker</span><br><span class="line">nvtee_queue2-&gt;cond1</span><br><span class="line"></span><br><span class="line">cond1(yes)-&gt;nvvideo_renderer</span><br><span class="line">cond1(no)-&gt;fakessink</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-imagedata-multistream"><a href="#deepstream-imagedata-multistream" class="headerlink" title="deepstream-imagedata-multistream"></a>deepstream-imagedata-multistream</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uridecodebin(n) =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; capsfilter =&gt; nvmultistreamtiler =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">uri_decode_bin_n&#x3D;&gt;start: uridecodebin</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor1&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">filter&#x3D;&gt;operation: capsfilter</span><br><span class="line">nvtiler&#x3D;&gt;operation: nvmultistreamtiler</span><br><span class="line">convertor2&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">uri_decode_bin_n-&gt;stream_muxer-&gt;primary_inference-&gt;convertor1-&gt;filter-&gt;nvtiler-&gt;convertor2-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-ssd-parser"><a href="#deepstream-ssd-parser" class="headerlink" title="deepstream-ssd-parser"></a>deepstream-ssd-parser</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nviferserver =&gt; nvvideoconvert =&gt; nvdsosd =&gt; queue =&gt; nvvideoconvert =&gt; capsfilter =&gt; avenc_mpeg4 =&gt; mpeg4videoparse =&gt; qtmux =&gt; filesink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinferserver</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">queue&#x3D;&gt;operation: queue</span><br><span class="line">convertor2&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">capsfilter&#x3D;&gt;operation: capsfilter</span><br><span class="line">encoder&#x3D;&gt;operation: avenc_mpeg4</span><br><span class="line">mpeg4_parser&#x3D;&gt;operation: mpeg4videoparse</span><br><span class="line">qtmux&#x3D;&gt;operation: qtmux</span><br><span class="line">filesink&#x3D;&gt;operation: filesink</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;queue-&gt;convertor2-&gt;capsfilter-&gt;encoder-&gt;mpeg4_parser-&gt;qtmux-&gt;filesink</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-1-usbcam"><a href="#deepstream-test-1-usbcam" class="headerlink" title="deepstream-test-1-usbcam"></a>deepstream-test-1-usbcam</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v4l2src =&gt; capsfilter =&gt; videoconvert =&gt; nvvideoconvert =&gt; capsfilter =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nveglglessink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">usb_cam_source&#x3D;&gt;start: v4l2src</span><br><span class="line">v4l2src_caps&#x3D;&gt;operation: capsfilter</span><br><span class="line">convertor_src1&#x3D;&gt;operation: videoconvert</span><br><span class="line">convertor_src2&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">nvmm_caps&#x3D;&gt;operation: capsfilter</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">nvvideo_renderer&#x3D;&gt;end: nveglglessink</span><br><span class="line"></span><br><span class="line">usb_cam_source-&gt;v4l2src_caps-&gt;convertor_src1-&gt;convertor_src2-&gt;nvmm_caps-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;nvvideo_renderer</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="deepstream-test-1-rtsp-out"><a href="#deepstream-test-1-rtsp-out" class="headerlink" title="deepstream-test-1-rtsp-out"></a>deepstream-test-1-rtsp-out</h2><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filesrc =&gt; h264parse =&gt; nvv4l2decoder =&gt; nvstreammux =&gt; nvinfer =&gt; nvvideoconvert =&gt; nvdsosd =&gt; nvvideoconvert =&gt; capsfilter =&gt; nvv4l2h264enc(nvv4l2h265enc) =&gt; rtph264pay(rtph265pay) =&gt; updsink</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">file_source&#x3D;&gt;start: filesrc</span><br><span class="line">h2642_parser&#x3D;&gt;operation: h264parse</span><br><span class="line">nvv4l2_decoder&#x3D;&gt;operation: nvv4l2deocder</span><br><span class="line">stream_muxer&#x3D;&gt;operation: nvstreammux</span><br><span class="line">primary_inference&#x3D;&gt;operation: nvinfer</span><br><span class="line">convertor&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">on_screen_display&#x3D;&gt;operation: nvdsosd</span><br><span class="line">convertot_post_osd&#x3D;&gt;operation: nvvideoconvert</span><br><span class="line">filter&#x3D;&gt;operation: capsfilter</span><br><span class="line">encoder_h264&#x3D;&gt;operation: nvv4l2h264enc</span><br><span class="line">encoder_h265&#x3D;&gt;operation: nvv4l2h265enc</span><br><span class="line">rtppay_h264&#x3D;&gt;operation: rtph264pay</span><br><span class="line">rtppay_h265&#x3D;&gt;operation: rtph265pay</span><br><span class="line">udpsink&#x3D;&gt;end: udpsink</span><br><span class="line"></span><br><span class="line">cond1&#x3D;&gt;condition: H264?</span><br><span class="line">cond2&#x3D;&gt;condition: H264?</span><br><span class="line"></span><br><span class="line">file_source-&gt;h2642_parser-&gt;nvv4l2_decoder-&gt;stream_muxer-&gt;primary_inference-&gt;convertor-&gt;on_screen_display-&gt;filter-&gt;cond1</span><br><span class="line"></span><br><span class="line">cond1(yes)-&gt;encoder_h264-&gt;cond2</span><br><span class="line">cond1(no)-&gt;encoder_h265-&gt;cond2</span><br><span class="line">cond2(yes)-&gt;rtppay_h264-&gt;udpsink</span><br><span class="line">cond2(no)-&gt;rtppay_h265-&gt;udpsink</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/DeepStream-Python/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-GStreamer-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/GStreamer-Python/">GStreamer-Python</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/GStreamer-Python/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ul>
-<li>源组件(source elements): 不接受数据，仅产生数据</li>
-<li>通常组件(common elements)有过滤器(filters), 转换器(convertors), 分流器(demuxers), 整流器(muxers), 编译码器(codecs): 同时拥有输入和输出衬垫</li>
-<li>接收组件(sink elements): 接受数据但不产生任何数据</li>
-</ul>
-<h2 id="组件状态"><a href="#组件状态" class="headerlink" title="组件状态"></a>组件状态</h2><ul>
-<li>GST_STATE_NULL: 默认状态。该状态将回收被该组件占有的所有资源</li>
-<li>GST_STATE_READY: 准备状态。组件会得到所有需要的全局资源</li>
-<li>GST_STATE_PAUSED: 暂定状态。组件已经对流开始了处理，但此时刻暂停了处理( PAUSED 状态除了不能运行时钟外,其它与 PLAYING 状态一模一样)</li>
-<li>GST_STATE_PLAYING: 流动状态。</li>
-</ul>
-<h2 id="箱柜-bin"><a href="#箱柜-bin" class="headerlink" title="箱柜(bin)"></a>箱柜(bin)</h2><p>当移除箱柜时，箱柜中的组件同事被销毁</p>
-<p><strong>管道(Pipeline)其实就是一种特殊的箱柜(bin)</strong></p>
-<h2 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h2><p>总线是一个简单的系统，它采用自己的线程机制将一个管道线程的消息分发到一个应用程序当中。</p>
-<p>每一个管道默认包含一个总线。</p>
-<p>使用总线的两种方法:</p>
-<ul>
-<li>运行GLib/Gtk+ 主循环</li>
-<li>自己监听总线消息</li>
-</ul>
-<h2 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h2><ul>
-<li>错误、警告和消息提示</li>
-<li>数据流结束</li>
-<li>标签</li>
-<li>状态转换</li>
-<li>缓冲</li>
-<li>组件消息</li>
-<li>Application-specific</li>
-</ul>
-<h2 id="衬垫"><a href="#衬垫" class="headerlink" title="衬垫"></a>衬垫</h2><p>衬垫是组件对外的接口</p>
-<h2 id="缓冲区和事件"><a href="#缓冲区和事件" class="headerlink" title="缓冲区和事件"></a>缓冲区和事件</h2><p>缓冲区包含管道里的数据流</p>
-<p>事件是一系列控制粒子，随着缓冲区被发送到管道的上游和下游</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li><a target="_blank" rel="noopener" href="http://orangeamoy.com/2019/06/28/GStreamerAndDeepStream/">http://orangeamoy.com/2019/06/28/GStreamerAndDeepStream/</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/fireroll/category_5641411.html">https://blog.csdn.net/fireroll/category_5641411.html</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/GStreamer-Python/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python随机生成字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/Python%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">Python随机生成字符串</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/Python%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成12组16位密码，含数字、字母和特殊字符</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">    print(<span class="string">&#x27;&#x27;</span>.join(random.sample(string.digits + string.ascii_letters + <span class="string">&quot;!@#$%^&amp;*&quot;</span>, <span class="number">16</span>)))</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/Python%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-OpenCV中BGR转RGB的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/OpenCV%E4%B8%ADBGR%E8%BD%ACRGB%E7%9A%84%E6%96%B9%E6%B3%95/">OpenCV中BGR转RGB的方法</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/OpenCV%E4%B8%ADBGR%E8%BD%ACRGB%E7%9A%84%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:06:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>cv2.imread默认读入图片的通道顺序为BGR(历史遗漏问题).<br>三种将BGR转换为RGB的方法:</p>
-<ul>
-<li>方法一</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">B, G, R = cv2.split(img)</span><br><span class="line">img = cv2.merge([R, G, B])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方法二</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方法三</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = img[:,:,::-<span class="number">1</span>] 或者</span><br><span class="line">img = img[..., ::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OpenCV</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/OpenCV%E4%B8%ADBGR%E8%BD%ACRGB%E7%9A%84%E6%96%B9%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-base64与cv2互换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/base64%E4%B8%8Ecv2%E4%BA%92%E6%8D%A2/">base64与cv2互换</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/base64%E4%B8%8Ecv2%E4%BA%92%E6%8D%A2/" class="archive-article-date">
-  	<time datetime="2021-03-24T14:04:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cv2_base64</span>(<span class="params">image</span>):</span></span><br><span class="line">    base64_str = cv2.imencode(<span class="string">&#x27;.jpg&#x27;</span>,image)[<span class="number">1</span>].tostring()</span><br><span class="line">    base64_str = base64.b64encode(base64_str)</span><br><span class="line">    <span class="keyword">return</span> base64_str</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">base64_cv2</span>(<span class="params">base64_str</span>):</span></span><br><span class="line">    imgString = base64.b64decode(base64_str)</span><br><span class="line">    nparr = np.fromstring(imgString,np.uint8)</span><br><span class="line">    image = cv2.imdecode(nparr,cv2.IMREAD_COLOR)</span><br><span class="line">    <span class="keyword">return</span> image</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OpenCV</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/base64%E4%B8%8Ecv2%E4%BA%92%E6%8D%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-OpenCV获取视频参数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/20/OpenCV%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E5%8F%82%E6%95%B0/">OpenCV获取视频参数</a>
-    </h1>
-  
-
-        
-        <a href="/2020/12/20/OpenCV%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E5%8F%82%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-12-20T13:01:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">cap = cv2.VideoCapture(video_name)</span><br><span class="line">video_info = [cap.get(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">19</span>)]</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">propld</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">CAP_PROP_POS_MSEC</td>
-<td align="center">0</td>
-<td align="center">视频文件的当前位置(以毫秒为单位)或视频捕获时间戳</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_POS_FRAMES</td>
-<td align="center">1</td>
-<td align="center">基于0的索引将被解码/捕获下一帧</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_POS_AVI_RATIO</td>
-<td align="center">2</td>
-<td align="center">视频文件的相对位置:0 - 视频的开始, 1 - 视频的结束</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FRAME_WIDTH</td>
-<td align="center">3</td>
-<td align="center">帧的宽度</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FRAME_HEIGHT</td>
-<td align="center">4</td>
-<td align="center">帧的高度</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FPS</td>
-<td align="center">5</td>
-<td align="center">帧速</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FOURCC</td>
-<td align="center">6</td>
-<td align="center">4个字符表示的视频编码器格式</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FRAME_COUNT</td>
-<td align="center">7</td>
-<td align="center">帧数</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_FORMAT</td>
-<td align="center">8</td>
-<td align="center">byretrieve()返回的Mat对象的格式</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_MODE</td>
-<td align="center">9</td>
-<td align="center">只是当前捕获模式的后端特定值</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_BRIGHTNESS</td>
-<td align="center">10</td>
-<td align="center">图像的亮度(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_CONTRAST</td>
-<td align="center">11</td>
-<td align="center">图像的对比度(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_SATURATION</td>
-<td align="center">12</td>
-<td align="center">图像的饱和度(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_HUE</td>
-<td align="center">13</td>
-<td align="center">图像的色相(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_GAIN</td>
-<td align="center">14</td>
-<td align="center">图像的增益(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_EXPOSURE</td>
-<td align="center">15</td>
-<td align="center">曝光(仅用于相机)</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_CONVERT_RGB</td>
-<td align="center">16</td>
-<td align="center">表示图像是否应转换为RGB的布尔标志</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_PROP_WHITE_BALANCE</td>
-<td align="center">17</td>
-<td align="center">目前不支持</td>
-</tr>
-<tr>
-<td align="center">CAP_PROP_RECTIFICATION</td>
-<td align="center">18</td>
-<td align="center">立体摄像机的整流标志</td>
-</tr>
-</tbody></table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OpenCV</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/20/OpenCV%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E5%8F%82%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-感叹，两年前" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/">感叹，两年前</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" class="archive-article-date">
-  	<time datetime="2020-04-04T11:44:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。</p>
-<p>所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/04/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/04/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1274,6 +1267,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Life</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Jetson</a>
               </li>
             
             <div class="clearfix"></div>

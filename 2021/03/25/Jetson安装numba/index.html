@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://jeffrey86.github.io">
-  <title>感叹，两年前 | 关于你的，我都感兴趣</title>
+  <title>Jetson安装numba | 关于你的，我都感兴趣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。 所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。">
+  <meta name="description" content="方法一12# 应该可以，但我没试过sudo apt install python3-numba  方法二123456789sudo apt install llvm-10-dev# 添加 export LLVM_CONFIG&#x3D;&#x2F;usr&#x2F;lib&#x2F;llvm-10&#x2F;bin&#x2F;llvm-config 到 .bashrc# 然后 source .bashrc# 或者 cd &#x2F;usr&#x2F;bin &amp;&amp;amp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="感叹，两年前">
-<meta property="og:url" content="http://jeffrey86.github.io/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/index.html">
+<meta property="og:title" content="Jetson安装numba">
+<meta property="og:url" content="http://jeffrey86.github.io/2021/03/25/Jetson%E5%AE%89%E8%A3%85numba/index.html">
 <meta property="og:site_name" content="关于你的，我都感兴趣">
-<meta property="og:description" content="两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。 所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。">
+<meta property="og:description" content="方法一12# 应该可以，但我没试过sudo apt install python3-numba  方法二123456789sudo apt install llvm-10-dev# 添加 export LLVM_CONFIG&#x3D;&#x2F;usr&#x2F;lib&#x2F;llvm-10&#x2F;bin&#x2F;llvm-config 到 .bashrc# 然后 source .bashrc# 或者 cd &#x2F;usr&#x2F;bin &amp;&amp;amp">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-04T11:44:01.000Z">
-<meta property="article:modified_time" content="2021-03-25T00:31:29.551Z">
+<meta property="article:published_time" content="2021-03-25T00:54:50.000Z">
+<meta property="article:modified_time" content="2021-03-25T01:01:29.118Z">
 <meta property="article:author" content="Jeffrey">
-<meta property="article:tag" content="Life">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Jetson">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="关于你的，我都感兴趣" type="application/atom+xml">
@@ -137,28 +138,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-感叹，两年前" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Jetson安装numba" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      感叹，两年前
+      Jetson安装numba
     </h1>
   
 
         
-        <a href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" class="archive-article-date">
-  	<time datetime="2020-04-04T11:44:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+        <a href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85numba/" class="archive-article-date">
+  	<time datetime="2021-03-25T00:54:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。</p>
-<p>所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。</p>
+        <h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 应该可以，但我没试过</span></span><br><span class="line">sudo apt install python3-numba</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install llvm-10-dev</span><br><span class="line"><span class="comment"># 添加 export LLVM_CONFIG=/usr/lib/llvm-10/bin/llvm-config 到 .bashrc</span></span><br><span class="line"><span class="comment"># 然后 source .bashrc</span></span><br><span class="line"><span class="comment"># 或者 cd /usr/bin &amp;&amp; ln -s llvm-config-10 llvm-config</span></span><br><span class="line">pip3 install --user -U llvmlite</span><br><span class="line">sudo mv /usr/include/tbb/tbb.h /usr/include/tbb/tbb.h.backup</span><br><span class="line">pip3 install --user -U numba</span><br><span class="line">sudo mv /usr/include/tbb/tbb.h.backup /usr/include/tbb/tbb.h</span><br><span class="line"><span class="comment"># 这样装上去用不了TBB,哈哈哈!!!</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法三-推荐"><a href="#方法三-推荐" class="headerlink" title="方法三(推荐)"></a>方法三(推荐)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install llvm-8</span><br><span class="line"><span class="comment"># 添加 export LLVM_CONFIG=/usr/lib/llvm-8/bin/llvm-config 到 .bashrc</span></span><br><span class="line"><span class="comment"># 然后 source .bashrc</span></span><br><span class="line"><span class="comment"># 或者 cd /usr/bin &amp;&amp; ln -s llvm-config-8 llvm-config</span></span><br><span class="line">pip3 install numba==0.48</span><br></pre></td></tr></table></figure>
 
       
 
@@ -193,7 +197,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jetson</a>
         		</li>
       		
 		</ul>
@@ -249,7 +257,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://jeffrey86.github.io/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://jeffrey86.github.io/2021/03/25/Jetson%E5%AE%89%E8%A3%85numba/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,18 +271,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/12/20/OpenCV%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E5%8F%82%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          OpenCV获取视频参数
+          Jetson安装系统后应该做的事
         
       </div>
     </a>
   
   
-    <a href="/2018/04/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2021/03/25/%E6%89%8B%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8-%E6%9B%B4%E6%96%B0%E5%86%85%E6%A0%B8%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手装NVIDIA驱动,更新内核问题</div>
       <i class="icon-circle-right"></i>
     </a>
   

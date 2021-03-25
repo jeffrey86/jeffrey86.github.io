@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://jeffrey86.github.io">
-  <title>感叹，两年前 | 关于你的，我都感兴趣</title>
+  <title>Jetson安装系统后应该做的事 | 关于你的，我都感兴趣</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。 所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。">
+  <meta name="description" content="卸载用不上的软件1234sudo apt remove libreoffice-common -ysudo apt remove thunderbird totem rhythmbox aisleriot simple-scan evince remmina shotwell -ysudo apt remove gnome-mines gnome-mahjongg gnome-sudoku gno">
 <meta property="og:type" content="article">
-<meta property="og:title" content="感叹，两年前">
-<meta property="og:url" content="http://jeffrey86.github.io/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/index.html">
+<meta property="og:title" content="Jetson安装系统后应该做的事">
+<meta property="og:url" content="http://jeffrey86.github.io/2021/03/25/Jetson%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/index.html">
 <meta property="og:site_name" content="关于你的，我都感兴趣">
-<meta property="og:description" content="两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。 所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。">
+<meta property="og:description" content="卸载用不上的软件1234sudo apt remove libreoffice-common -ysudo apt remove thunderbird totem rhythmbox aisleriot simple-scan evince remmina shotwell -ysudo apt remove gnome-mines gnome-mahjongg gnome-sudoku gno">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-04T11:44:01.000Z">
-<meta property="article:modified_time" content="2021-03-25T00:31:29.551Z">
+<meta property="article:published_time" content="2021-03-25T01:02:28.000Z">
+<meta property="article:modified_time" content="2021-03-25T01:03:14.934Z">
 <meta property="article:author" content="Jeffrey">
-<meta property="article:tag" content="Life">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Jetson">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="关于你的，我都感兴趣" type="application/atom+xml">
@@ -137,28 +138,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-感叹，两年前" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Jetson安装系统后应该做的事" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      感叹，两年前
+      Jetson安装系统后应该做的事
     </h1>
   
 
         
-        <a href="/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" class="archive-article-date">
-  	<time datetime="2020-04-04T11:44:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+        <a href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/" class="archive-article-date">
+  	<time datetime="2021-03-25T01:02:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>两年前的今天，我兴致勃勃地查找资料，创建了这个仓库。现在回想，要是每周能坚持写一点东西，现在是怎样的水平。后悔过后只剩感慨罢了。</p>
-<p>所以我决定重启这个仓库：每周坚持更新3到4篇学习笔记。立下Flag，万一能实现呢。</p>
+        <h2 id="卸载用不上的软件"><a href="#卸载用不上的软件" class="headerlink" title="卸载用不上的软件"></a>卸载用不上的软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove libreoffice-common -y</span><br><span class="line">sudo apt remove thunderbird totem rhythmbox aisleriot simple-scan evince remmina shotwell -y</span><br><span class="line">sudo apt remove gnome-mines gnome-mahjongg gnome-sudoku gnome-calculator -y</span><br><span class="line">sudo apt autoremove -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><p><code>sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt autoremove -y &amp;&amp; dpkg -l | grep ^rc | awk &#39;&#123;print $2&#125;&#39; | sudo xargs dpkg -P</code></p>
+<h2 id="安装需要的包"><a href="#安装需要的包" class="headerlink" title="安装需要的包"></a>安装需要的包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git vim 系统自带</span></span><br><span class="line">sudo apt install python-pip python3-pip -y</span><br><span class="line">sudo apt install libhdf5-serial-dev hdf5-tools libatlas-base-dev libopenblas-dev libopenmpi-dev gfortran -y</span><br><span class="line">sudo apt install libjpeg-dev zlib1g-dev -y <span class="comment"># torchvision 要求</span></span><br><span class="line">sudo apt install libfreetype6-dev -y       <span class="comment"># matplotlib 要求</span></span><br><span class="line">sudo apt install tmux -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="将cuda与tensorrt路径添加到系统变量"><a href="#将cuda与tensorrt路径添加到系统变量" class="headerlink" title="将cuda与tensorrt路径添加到系统变量"></a>将cuda与tensorrt路径添加到系统变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;<span class="string">EOF &gt;&gt;.bashrc</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># CUDA current version:10.2</span></span><br><span class="line"><span class="string">export PATH=&quot;/usr/local/cuda/bin:\$PATH&quot;</span></span><br><span class="line"><span class="string">export LD_LIBRARY_PATH=&quot;/usr/local/cuda/lib64:\$LD_LIBRARY_PATH&quot;</span></span><br><span class="line"><span class="string">export C_INCLUDE_PATH=&quot;/usr/local/include:\$C_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string">export CPLUS_INCLUDE_PATH=&quot;/usr/local/cuda/include:\$CPLUS_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># TensorRT current version:7.1</span></span><br><span class="line"><span class="string">export LD_LIBRARY_PATH=&quot;/usr/lib/aarch64-linux-gnu:\$LD_LIBRARY_PATH&quot;</span></span><br><span class="line"><span class="string">export CPLUS_INCLUDE_PATH=&quot;/usr/include/aarch64-linux-gnu:\$CPLUS_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string">export C_INCLUDE_PATH=&quot;/usr/include/aarch64-linux-gnu:\$C_INCLUDE_PATH&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="功率与风扇"><a href="#功率与风扇" class="headerlink" title="功率与风扇"></a>功率与风扇</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 功率</span></span><br><span class="line">sudo jetson_clocks <span class="comment"># 启动性能最大模式</span></span><br><span class="line">sudo nvpmodel -m 0 <span class="comment"># 0 设为(10W)高功率模式, 1 设为(5W)低功率模式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自启风扇 jetson-fan-ctl</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Pyrestone/jetson-fan-ctl.git</span><br><span class="line"><span class="built_in">cd</span> jetson-fan-ctl &amp;&amp; sudo ./install.sh &amp;&amp; <span class="built_in">cd</span> .. &amp;&amp; rm -rf jetson-fan-ctl</span><br></pre></td></tr></table></figure>
+
+<h2 id="jtop"><a href="#jtop" class="headerlink" title="jtop"></a>jtop</h2><p><code>sudo pip3 install jetson-stats</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -U cython <span class="comment"># 一定先装cython，否则numpy会安装失败</span></span><br><span class="line">pip3 install -U pycuda numpy</span><br><span class="line">pip3 install -U matplotlib <span class="comment"># 先执行 pip3 install --upgrade setuptools &amp;&amp; sudo apt install libfreetype6-dev -y</span></span><br><span class="line">pip3 install -U  scipy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 深度学习</span></span><br><span class="line"><span class="comment"># 参考https://forums.developer.nvidia.com/t/pytorch-for-jetson-nano-version-1-5-0-now-available/72048</span></span><br><span class="line"><span class="comment"># 安装pytorch, torchvision, torch2trt</span></span><br><span class="line">wget https://nvidia.box.com/shared/static/9eptse6jyly1ggt9axbja2yrmj6pbarc.whl -O torch-1.6.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line">pip3 install torch-1.6.0-cp36-cp36m-linux_aarch64.whl --user &amp;&amp; rm torch-1.6.0-cp36-cp36m-linux_aarch64.whl</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> --branch release/0.7 https://github.com/pytorch/vision torchvision</span><br><span class="line"><span class="built_in">cd</span> torchvision &amp;&amp; python3 setup.py install --user &amp;&amp; <span class="built_in">cd</span> .. &amp;&amp; rm -rf torchvision</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/NVIDIA-AI-IOT/torch2trt.git</span><br><span class="line"><span class="built_in">cd</span> torch2trt &amp;&amp; python3 setup.py install --user &amp;&amp; <span class="built_in">cd</span> .. &amp;&amp; rm -rf torch2trt</span><br><span class="line"><span class="comment"># onnxruntime</span></span><br><span class="line">https://developer.nvidia.com/blog/announcing-onnx-runtime-for-jetson/</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩大Swap分区"><a href="#扩大Swap分区" class="headerlink" title="扩大Swap分区"></a>扩大Swap分区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SWAP_FILE=<span class="string">&quot;/var/swapfile&quot;</span> &amp;&amp; sudo fallocate -l 2G <span class="variable">$&#123;SWAP_FILE&#125;</span> &amp;&amp; sudo chmod 600 <span class="variable">$&#123;SWAP_FILE&#125;</span> &amp;&amp; sudo mkswap <span class="variable">$&#123;SWAP_FILE&#125;</span> &amp;&amp; sudo swapon <span class="variable">$&#123;SWAP_FILE&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动启用swapfile</span></span><br><span class="line">sudo bash -c <span class="string">&#x27;echo &quot;/var/swapfile swap swap defaults 0 0&quot; &gt;&gt; /etc/fstab&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="编译OpenCV-With-CUDA"><a href="#编译OpenCV-With-CUDA" class="headerlink" title="编译OpenCV With CUDA"></a>编译OpenCV With CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参考 https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.3.0_Jetson.sh</span></span><br><span class="line"><span class="comment">#      https://docs.opencv.org/4.3.0/d7/d9f/tutorial_linux_install.html</span></span><br><span class="line">sudo apt-get purge *libopencv* -y</span><br><span class="line"></span><br><span class="line">sudo apt-get install build-essential cmake git pkg-config</span><br><span class="line">sudo apt install libavcodec-dev libavformat-dev libswscale-dev \</span><br><span class="line">  libv4l-dev libxvidcore-dev libx264-dev libatlas-base-dev liblapacke-dev \</span><br><span class="line">  libgtk2.0-dev libjpeg-dev libpng-dev libtiff-dev libtiff5-dev libtbb2 libtbb-dev \</span><br><span class="line">  libopenjpip7 libopenjp2-7-dev libavresample-dev libdc1394-22-dev -y</span><br><span class="line">sudo apt install qv4l2 v4l2ucp gfortran ffmpeg -y</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;** Download opencv-4.4.0&quot;</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$folder</span></span><br><span class="line">curl -L https://github.com/opencv/opencv/archive/4.4.0.zip -o opencv-4.4.0.zip</span><br><span class="line">curl -L https://github.com/opencv/opencv_contrib/archive/4.4.0.zip -o opencv_contrib-4.4.0.zip</span><br><span class="line">unzip opencv-4.4.0.zip</span><br><span class="line">unzip opencv_contrib-4.4.0.zip</span><br><span class="line"><span class="built_in">cd</span> opencv-4.4.0/</span><br><span class="line"></span><br><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line"></span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE \</span><br><span class="line">  -D CMAKE_INSTALL_PREFIX=/usr/<span class="built_in">local</span> \</span><br><span class="line">  -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \</span><br><span class="line">  -D OPENCV_DNN_CUDA=ON \</span><br><span class="line">  -D OPENCV_ENABLE_NONFREE=ON \</span><br><span class="line">  -D OPENCV_GENERATE_PKGCONFIG=ON \</span><br><span class="line">  -D INSTALL_PYTHON_EXAMPLES=OFF \</span><br><span class="line">  -D INSTALL_C_EXAMPLES=OFF \</span><br><span class="line">  -D BUILD_DOCS=OFF \</span><br><span class="line">  -D BUILD_TESTS=OFF \</span><br><span class="line">  -D BUILD_EXAMPLES=OFF \</span><br><span class="line">  -D BUILD_PERF_TESTS=OFF \</span><br><span class="line">  -D BUILD_OPENCV_DNN=ON \</span><br><span class="line">  -D BUILD_OPENCV_PYTHON2=ON \</span><br><span class="line">  -D BUILD_OPENCV_PYTHON3=ON \</span><br><span class="line">  -D BUILD_SHARED_LIBS=ON \</span><br><span class="line">  -D BUILD_TIFF=OFF \</span><br><span class="line">  -D TINYDNN_USE_NNPACK=OFF \</span><br><span class="line">  -D TINYDNN_USE_TBB=ON \</span><br><span class="line">  -D TINYDNN_USE_OMP=ON \</span><br><span class="line">  -D ENABLE_FAST_MATH=ON \</span><br><span class="line">  -D WITH_WEBP=OFF \</span><br><span class="line">  -D WITH_GSTREAMER=ON \</span><br><span class="line">  -D WITH_GSTREAMER_0_10=OFF \</span><br><span class="line">  -D WITH_LIBV4L=ON \</span><br><span class="line">  -D WITH_V4L=ON \</span><br><span class="line">  -D WITH_OPENGL=ON \</span><br><span class="line">  -D WITH_FFMPEG=ON \</span><br><span class="line">  -D WITH_OPENMP=ON \</span><br><span class="line">  -D WITH_JPEG=ON \</span><br><span class="line">  -D WITH_IPP=OFF \</span><br><span class="line">  -D WITH_TBB=ON \</span><br><span class="line">  -D WITH_CUBLAS=ON \</span><br><span class="line">  -D WITH_CUDA=ON \</span><br><span class="line">  -D WITH_CUDNN=ON \</span><br><span class="line">  -D WITH_NVCUVID=ON \</span><br><span class="line">  -D CUDA_ARCH_BIN=5.3 \</span><br><span class="line">  -D CUDA_ARCH_PTX=5.3 \</span><br><span class="line">  -D CUDA_FAST_MATH=ON \</span><br><span class="line">  -D CUDNN_VERSION=8.0 \</span><br><span class="line">  -D ENABLE_PRECOMPILED_HEADERS=OFF \</span><br><span class="line">  -D ENABLE_NEON=ON \</span><br><span class="line">  -D MKL_WITH_TBB=ON \</span><br><span class="line">  -D MKL_WITH_OPENMP=ON \</span><br><span class="line">  ..</span><br><span class="line"></span><br><span class="line">make -j$(nproc)</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="关闭与开启图形化界面"><a href="#关闭与开启图形化界面" class="headerlink" title="关闭与开启图形化界面"></a>关闭与开启图形化界面</h2><ul>
+<li>关闭 <code>sudo systemctl set-default multi-user.target &amp;&amp; sudo reboot</code></li>
+<li>开启 <code>sudo systemctl set-default graphical.target &amp;&amp; sudo reboot</code></li>
+</ul>
+<h2 id="获取SN码"><a href="#获取SN码" class="headerlink" title="获取SN码"></a>获取SN码</h2><p><code>cat /proc/device-tree/serial-number</code></p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#v4l2-ctl --set-fmt-video=width=640,height=480,pixelformat=MJPG</span></span><br><span class="line"><span class="comment">#v4l2-ctl -d 0 --list-formats-ext</span></span><br><span class="line">code: <span class="built_in">cap</span> = cv2.VideoCaptrue(0, cv2.CAP_V4L) <span class="comment"># 搞定</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装numba"><a href="#安装numba" class="headerlink" title="安装numba"></a>安装numba</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install llvm-dev</span><br><span class="line">pip3 install llvmlite</span><br><span class="line">pip3 install numba</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">https://medium.com/@yanweiliu/nvidia-jetson-nano%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%B8%80-%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8-4dce57a0b2b1</span><br><span class="line">http://www.gpus.cn/gpus_list_page_techno_support_content?id=39</span><br><span class="line">https://zhuanlan.zhihu.com/p/80809006</span><br><span class="line">https://dev.classmethod.jp/articles/jetson-nano-deepcomposer-workshop-lab2/</span><br><span class="line">https://medium.com/hackers-terminal/installing-pytorch-torchvision-on-nvidias-jetson-tx2-81591d03ce32</span><br><span class="line">https://cloud.tencent.com/developer/article/1369088</span><br><span class="line">https://stackoverflow.com/questions/15435988/does-opencv-support-v4l2</span><br><span class="line">https://github.com/Pyrestone/jetson-fan-ctl</span><br></pre></td></tr></table></figure>
 
       
 
@@ -193,7 +218,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jetson</a>
         		</li>
       		
 		</ul>
@@ -249,7 +278,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://jeffrey86.github.io/2020/04/04/%E6%84%9F%E5%8F%B9%EF%BC%8C%E4%B8%A4%E5%B9%B4%E5%89%8D/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://jeffrey86.github.io/2021/03/25/Jetson%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84%E4%BA%8B/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,18 +292,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/12/20/OpenCV%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E5%8F%82%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          OpenCV获取视频参数
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2021/03/25/Jetson%E5%AE%89%E8%A3%85numba/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Jetson安装numba</div>
       <i class="icon-circle-right"></i>
     </a>
   
